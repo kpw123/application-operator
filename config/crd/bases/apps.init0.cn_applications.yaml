@@ -1422,7 +1422,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -1633,7 +1634,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -1759,28 +1761,6 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
-                            resizePolicy:
-                              description: Resources resize policy for the container.
-                              items:
-                                description: ContainerResizePolicy represents resource
-                                  resize policy for the container.
-                                properties:
-                                  resourceName:
-                                    description: 'Name of the resource to which this
-                                      resource resize policy applies. Supported values:
-                                      cpu, memory.'
-                                    type: string
-                                  restartPolicy:
-                                    description: Restart policy to apply when specified
-                                      resource is resized. If not specified, it defaults
-                                      to NotRequired.
-                                    type: string
-                                required:
-                                - resourceName
-                                - restartPolicy
-                                type: object
-                              type: array
-                              x-kubernetes-list-type: atomic
                             resources:
                               description: 'Compute Resources required by this container.
                                 Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
@@ -1830,8 +1810,7 @@ spec:
                                     of compute resources required. If Requests is
                                     omitted for a container, it defaults to Limits
                                     if that is explicitly specified, otherwise to
-                                    an implementation-defined value. Requests cannot
-                                    exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
+                                    an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
                                   type: object
                               type: object
                             securityContext:
@@ -2057,7 +2036,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -2821,7 +2801,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -3023,7 +3004,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -3149,28 +3131,6 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
-                            resizePolicy:
-                              description: Resources resize policy for the container.
-                              items:
-                                description: ContainerResizePolicy represents resource
-                                  resize policy for the container.
-                                properties:
-                                  resourceName:
-                                    description: 'Name of the resource to which this
-                                      resource resize policy applies. Supported values:
-                                      cpu, memory.'
-                                    type: string
-                                  restartPolicy:
-                                    description: Restart policy to apply when specified
-                                      resource is resized. If not specified, it defaults
-                                      to NotRequired.
-                                    type: string
-                                required:
-                                - resourceName
-                                - restartPolicy
-                                type: object
-                              type: array
-                              x-kubernetes-list-type: atomic
                             resources:
                               description: Resources are not allowed for ephemeral
                                 containers. Ephemeral containers use spare resources
@@ -3221,8 +3181,7 @@ spec:
                                     of compute resources required. If Requests is
                                     omitted for a container, it defaults to Limits
                                     if that is explicitly specified, otherwise to
-                                    an implementation-defined value. Requests cannot
-                                    exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
+                                    an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
                                   type: object
                               type: object
                             securityContext:
@@ -3440,7 +3399,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -4237,7 +4197,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -4448,7 +4409,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -4574,28 +4536,6 @@ spec:
                                   format: int32
                                   type: integer
                               type: object
-                            resizePolicy:
-                              description: Resources resize policy for the container.
-                              items:
-                                description: ContainerResizePolicy represents resource
-                                  resize policy for the container.
-                                properties:
-                                  resourceName:
-                                    description: 'Name of the resource to which this
-                                      resource resize policy applies. Supported values:
-                                      cpu, memory.'
-                                    type: string
-                                  restartPolicy:
-                                    description: Restart policy to apply when specified
-                                      resource is resized. If not specified, it defaults
-                                      to NotRequired.
-                                    type: string
-                                required:
-                                - resourceName
-                                - restartPolicy
-                                type: object
-                              type: array
-                              x-kubernetes-list-type: atomic
                             resources:
                               description: 'Compute Resources required by this container.
                                 Cannot be updated. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
@@ -4645,8 +4585,7 @@ spec:
                                     of compute resources required. If Requests is
                                     omitted for a container, it defaults to Limits
                                     if that is explicitly specified, otherwise to
-                                    an implementation-defined value. Requests cannot
-                                    exceed Limits. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
+                                    an implementation-defined value. More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
                                   type: object
                               type: object
                             securityContext:
@@ -4872,7 +4811,8 @@ spec:
                                   type: integer
                                 grpc:
                                   description: GRPC specifies an action involving
-                                    a GRPC port.
+                                    a GRPC port. This is a beta field and requires
+                                    enabling GRPCContainerProbe feature gate.
                                   properties:
                                     port:
                                       description: Port number of the gRPC service.
@@ -5278,9 +5218,8 @@ spec:
                         x-kubernetes-list-type: map
                       restartPolicy:
                         description: 'Restart policy for all containers within the
-                          pod. One of Always, OnFailure, Never. In some contexts,
-                          only a subset of those values may be permitted. Default
-                          to Always. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy'
+                          pod. One of Always, OnFailure, Never. Default to Always.
+                          More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy'
                         type: string
                       runtimeClassName:
                         description: 'RuntimeClassName refers to a RuntimeClass object
@@ -5298,12 +5237,10 @@ spec:
                         type: string
                       schedulingGates:
                         description: "SchedulingGates is an opaque list of values
-                          that if specified will block scheduling the pod. If schedulingGates
-                          is not empty, the pod will stay in the SchedulingGated state
-                          and the scheduler will not attempt to schedule the pod.
-                          \n SchedulingGates can only be set at pod creation time,
-                          and be removed only afterwards. \n This is a beta feature
-                          enabled by the PodSchedulingReadiness feature gate."
+                          that if specified will block scheduling the pod. More info:
+                          \ https://git.k8s.io/enhancements/keps/sig-scheduling/3521-pod-scheduling-readiness.
+                          \n This is an alpha-level feature enabled by PodSchedulingReadiness
+                          feature gate."
                         items:
                           description: PodSchedulingGate is associated to a Pod to
                             guard its scheduling.
@@ -5652,19 +5589,15 @@ spec:
                               type: object
                               x-kubernetes-map-type: atomic
                             matchLabelKeys:
-                              description: "MatchLabelKeys is a set of pod label keys
+                              description: MatchLabelKeys is a set of pod label keys
                                 to select the pods over which spreading will be calculated.
                                 The keys are used to lookup values from the incoming
                                 pod labels, those key-value labels are ANDed with
                                 labelSelector to select the group of existing pods
                                 over which spreading will be calculated for the incoming
-                                pod. The same key is forbidden to exist in both MatchLabelKeys
-                                and LabelSelector. MatchLabelKeys cannot be set when
-                                LabelSelector isn't set. Keys that don't exist in
-                                the incoming pod labels will be ignored. A null or
-                                empty list means only match against labelSelector.
-                                \n This is a beta field and requires the MatchLabelKeysInPodTopologySpread
-                                feature gate to be enabled (enabled by default)."
+                                pod. Keys that don't exist in the incoming pod labels
+                                will be ignored. A null or empty list means only match
+                                against labelSelector.
                               items:
                                 type: string
                               type: array
@@ -6207,7 +6140,7 @@ spec:
                                     be the minimum value between the SizeLimit specified
                                     here and the sum of memory limits of all containers
                                     in a pod. The default is nil which means that
-                                    the limit is undefined. More info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir'
+                                    the limit is undefined. More info: http://kubernetes.io/docs/user-guide/volumes#emptydir'
                                   pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                   x-kubernetes-int-or-string: true
                               type: object
@@ -6446,8 +6379,7 @@ spec:
                                                 a container, it defaults to Limits
                                                 if that is explicitly specified, otherwise
                                                 to an implementation-defined value.
-                                                Requests cannot exceed Limits. More
-                                                info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
+                                                More info: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/'
                                               type: object
                                           type: object
                                         selector:

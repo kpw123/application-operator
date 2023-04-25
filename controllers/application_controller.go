@@ -18,13 +18,18 @@ package controllers
 
 import (
 	"context"
+	"fmt"
+	v1 "k8s.io/api/core/v1"
+	"k8s.io/apimachinery/pkg/api/errors"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"time"
 
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
-	appsv1 "github.com/kpw123/application-operator/api/v1"
+	myappsv1 "github.com/kpw123/application-operator/api/v1"
 )
 
 // ApplicationReconciler reconciles a Application object
@@ -47,16 +52,48 @@ type ApplicationReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.14.1/pkg/reconcile
 func (r *ApplicationReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = log.FromContext(ctx)
+	l := log.FromContext(ctx)
 
 	// TODO(user): your logic here
 
+	// get the Application
+	app := &myappsv1.Application{}
+
+	if err := r.Get(ctx, req.NamespacedName, app); err != nil {
+		if errors.IsNotFound(err) {
+			l.Info("the Application is not found")
+			return ctrl.Result{}, nil
+		}
+		l.Error(err, "failed to get the Application")
+		return ctrl.Result{RequeueAfter: 1 * time.Minute}, err
+	}
+
+	// create pods
+
+	for i := 0; i < int(app.Spec.Replicas); i++ {
+		pod := &v1.Pod{
+			ObjectMeta: metav1.ObjectMeta{
+				Name:      fmt.Sprintf("%s-%d", app.Name, i),
+				Namespace: app.Namespace,
+				Labels:    app.Labels,
+			},
+			Spec: app.Spec.Template.Spec,
+		}
+		if err := r.Create(ctx, pod); err != nil {
+			l.Error(err, "failed to create Pod")
+			return ctrl.Result{RequeueAfter: 1 * time.Minute}, err
+		}
+
+		l.Info(fmt.Sprintf("the pod (%s) has created", pod.Name))
+	}
+
+	l.Info("all pods has created")
 	return ctrl.Result{}, nil
 }
 
 // SetupWithManager sets up the controller with the Manager.
 func (r *ApplicationReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
-		For(&appsv1.Application{}).
+		For(&myappsv1.Application{}).
 		Complete(r)
 }
