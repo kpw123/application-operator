@@ -9,4 +9,15 @@ metadata:
     app.kubernetes.io/created-by: myoperator
   name: application-sample
 spec:
-  # TODO(user): Add fields here
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+            - containerPort: 80
+              protocol: TCP
