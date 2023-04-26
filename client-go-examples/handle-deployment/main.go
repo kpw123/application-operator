@@ -12,15 +12,14 @@ import (
 )
 
 func main() {
-	// 获取本地用户家目录
+
 	homePath := homedir.HomeDir()
 	if homePath == "" {
 		log.Fatal("failed to get the home directory")
 	}
-	// 拼接 家目录 .kube config 拿到完整的 k8s cluster 连接配置地址
+
 	kubeconfig := filepath.Join(homePath, ".kube", "config")
 
-	//从家目录集群连接配置地址生成 config
 	config, err := clientcmd.BuildConfigFromFlags("", kubeconfig)
 	if err != nil {
 		log.Fatal(err)
