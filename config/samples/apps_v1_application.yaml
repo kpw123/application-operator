@@ -1,12 +1,29 @@
 apiVersion: apps.init0.cn/v1
 kind: Application
 metadata:
-  labels:
-    app.kubernetes.io/name: application
-    app.kubernetes.io/instance: application-sample
-    app.kubernetes.io/part-of: myoperator
-    app.kubernetes.io/managed-by: kustomize
-    app.kubernetes.io/created-by: myoperator
   name: application-sample
+  labels:
+    app: "nginx"
 spec:
-  # TODO(user): Add fields here
+  deployment:
+    replicas: 3
+    selector:
+      matchLabels:
+        app: nginx
+    template:
+      metadata:
+        labels:
+          app: "nginx"
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:1.19
+            ports:
+              - containerPort: 80
+                protocol: TCP
+  service:
+    type: NodePort
+    ports:
+      - port: 80
+        targetPort: 80
+        nodePort: 30080
