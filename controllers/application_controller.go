@@ -205,7 +205,6 @@ func (r *ApplicationReconciler) reconcileDeployment(ctx context.Context, app *ap
 	newDp.SetLabels(app.Labels)
 	newDp.Spec = app.Spec.Deployment.DeploymentSpec
 	newDp.Spec.Template.SetLabels(app.Labels)
-	newDp.Spec.Template.ObjectMeta.SetLabels(app.Spec.Deployment.Template.Labels)
 
 	if err := ctrl.SetControllerReference(app, newDp, r.Scheme); err != nil {
 		log.Error(err, "Failed to SetControllerReference,will requeue after a short time.")
